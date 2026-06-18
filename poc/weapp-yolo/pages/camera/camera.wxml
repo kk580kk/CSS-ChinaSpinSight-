@@ -1,0 +1,102 @@
+<!--pages/camera/camera.wxml-->
+<view class="container">
+  <!-- Header -->
+  <view class="header">
+    <view class="back-btn" bindtap="onBack">
+      <text class="back-text">&lt;</text>
+    </view>
+    <text class="title">实时检测</text>
+    <view class="stats-toggle" bindtap="onToggleStats">
+      <text class="stats-text">{{showStats ? '隐藏' : '显示'}}数据</text>
+    </view>
+  </view>
+
+  <!-- Camera Container -->
+  <view class="camera-container">
+    <camera
+      class="camera"
+      device-position="back"
+      flash="off"
+      resolution="medium"
+      frame-size="medium"
+    />
+    
+    <!-- Detection Overlay -->
+    <view class="detection-overlay">
+      <view 
+        wx:for="{{detections}}" 
+        wx:key="index"
+        class="detection-box"
+        style="left: {{item.x1}}px; top: {{item.y1}}px; width: {{item.x2 - item.x1}}px; height: {{item.y2 - item.y1}}px;"
+      >
+        <text class="detection-label">{{(item.score * 100).toFixed(0)}}%</text>
+      </view>
+    </view>
+
+    <!-- Stats Panel -->
+    <view wx:if="{{showStats}}" class="stats-panel">
+      <view class="stat-item">
+        <text class="stat-label">FPS</text>
+        <text class="stat-value">{{fps}}</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-label">推理</text>
+        <text class="stat-value">{{inferenceTime}}ms</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-label">目标</text>
+        <text class="stat-value">{{detections.length}}</text>
+      </view>
+      <view wx:if="{{recording}}" class="stat-item recording">
+        <text class="stat-label">录像</text>
+        <text class="stat-value">{{formatTime(recordTime)}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Controls -->
+  <view class="controls">
+    <!-- Detection Button -->
+    <view class="control-group">
+      <button 
+        wx:if="{{!isDetecting}}"
+        class="btn btn-primary"
+        bindtap="onStartDetection"
+      >
+        开始检测
+      </button>
+      <button 
+        wx:if="{{isDetecting}}"
+        class="btn btn-danger"
+        bindtap="onStopDetection"
+      >
+        停止检测
+      </button>
+    </view>
+
+    <!-- Record Button -->
+    <view class="control-group">
+      <button 
+        wx:if="{{!recording}}"
+        class="btn btn-secondary"
+        bindtap="onStartRecord"
+      >
+        开始录像
+      </button>
+      <button 
+        wx:if="{{recording}}"
+        class="btn btn-danger"
+        bindtap="onStopRecord"
+      >
+        停止录像 {{formatTime(recordTime)}}
+      </button>
+    </view>
+  </view>
+
+  <!-- Tips -->
+  <view class="tips">
+    <text wx:if="{{!isDetecting}}">点击"开始检测"启动 YOLO 实时识别</text>
+    <text wx:if="{{isDetecting && detections.length === 0}}">未检测到目标</text>
+    <text wx:if="{{isDetecting && detections.length > 0}}">检测到 {{detections.length}} 个目标</text>
+  </view>
+</view>

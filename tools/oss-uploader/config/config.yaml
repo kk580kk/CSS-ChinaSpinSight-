@@ -1,0 +1,64 @@
+# OSS 上传工具配置
+
+oss:
+  # OSS 服务端点
+  endpoint: "oss-cn-shanghai.aliyuncs.com"
+  
+  # Bucket 名称
+  bucket: "chinaspinsight"
+  
+  # 访问密钥 (建议从环境变量读取)
+  # 环境变量名: OSS_ACCESS_KEY_ID, OSS_ACCESS_KEY_SECRET
+  access_key_id: ${OSS_ACCESS_KEY_ID}
+  access_key_secret: ${OSS_ACCESS_KEY_SECRET}
+  
+  # 上传配置
+  upload:
+    # 分片大小 (字节)
+    part_size: 1048576  # 1MB
+    
+    # 并发数
+    concurrency: 3
+    
+    # 超时时间 (秒)
+    timeout: 300
+    
+    # 是否覆盖已存在文件
+    overwrite: false
+
+# 文件映射配置
+mappings:
+  # ONNX Runtime 文件
+  - name: "ONNX Runtime JS"
+    local: "../../poc/weapp-yolo/inference/ort.min.js"
+    remote: "ort/ort.min.js"
+    required: true
+    
+  - name: "ONNX Runtime WASM"
+    local: "../../poc/weapp-yolo/inference/ort-wasm.wasm"
+    remote: "ort/ort-wasm.wasm"
+    required: true
+    
+  - name: "ONNX Runtime WASM SIMD"
+    local: "../../poc/weapp-yolo/inference/ort-wasm-simd.wasm"
+    remote: "ort/ort-wasm-simd.wasm"
+    required: false
+
+  # 模型文件
+  - name: "YOLOv5n FP32"
+    local: "../../poc/weapp-yolo/models/yolov5n-fp32.onnx"
+    remote: "models/yolov5n-fp32.onnx"
+    required: false
+    
+  - name: "YOLOv5n INT8"
+    local: "../../poc/weapp-yolo/models/yolov5n-int8.onnx"
+    remote: "models/yolov5n-int8.onnx"
+    required: true
+
+# CDN 配置
+cdn:
+  # CDN 域名
+  domain: "chinaspinsight.oss-cn-shanghai.aliyuncs.com"
+  
+  # 是否启用 CDN 刷新
+  refresh_cdn: false

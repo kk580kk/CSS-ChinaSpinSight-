@@ -1,0 +1,32 @@
+<!--pages/loading/loading.wxml-->
+<view class="container">
+  <view class="loading-content">
+    <!-- Status Icon -->
+    <view class="status-icon">
+      <view wx:if="{{status === 'checking' || status === 'loading'}}" class="spinner"></view>
+      <view wx:if="{{status === 'downloading'}}" class="download-icon">⬇️</view>
+      <view wx:if="{{status === 'ready'}}" class="success-icon">✅</view>
+      <view wx:if="{{status === 'error'}}" class="error-icon">❌</view>
+    </view>
+
+    <!-- Message -->
+    <text class="message">{{message}}</text>
+
+    <!-- Progress Bar -->
+    <view wx:if="{{status === 'downloading'}}" class="progress-container">
+      <view class="progress-bar">
+        <view class="progress-fill" style="width: {{progress}}%"></view>
+      </view>
+      <text class="progress-text">{{progress}}%</text>
+    </view>
+
+    <!-- Error -->
+    <view wx:if="{{status === 'error'}}" class="error-section">
+      <text class="error-message">{{errorMsg}}</text>
+      <view class="action-buttons">
+        <button class="btn btn-primary" bindtap="onRetry">重试</button>
+        <button class="btn btn-secondary" bindtap="onClearCache">清除缓存</button>
+      </view>
+    </view>
+  </view>
+</view>

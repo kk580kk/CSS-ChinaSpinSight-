@@ -1,0 +1,88 @@
+<!--pages/test/test.wxml-->
+<view class="container">
+  <!-- Header -->
+  <view class="header">
+    <view class="back-btn" bindtap="onBack">
+      <text class="back-text">&lt;</text>
+    </view>
+    <text class="title">POC 测试</text>
+    <view class="placeholder"></view>
+  </view>
+
+  <!-- Test Controls -->
+  <view class="controls">
+    <button 
+      class="btn btn-primary"
+      bindtap="onTestCheckModel"
+      disabled="{{running}}"
+    >
+      1. 检查模型
+    </button>
+    <button 
+      class="btn btn-primary"
+      bindtap="onTestDownloadModel"
+      disabled="{{running}}"
+    >
+      2. 下载模型
+    </button>
+    <button 
+      class="btn btn-primary"
+      bindtap="onTestLoadOrt"
+      disabled="{{running}}"
+    >
+      3. 加载 ONNX Runtime
+    </button>
+    <button 
+      class="btn btn-primary"
+      bindtap="onTestLoadModel"
+      disabled="{{running}}"
+    >
+      4. 加载模型
+    </button>
+    <button 
+      class="btn btn-primary"
+      bindtap="onTestSingleInference"
+      disabled="{{running}}"
+    >
+      5. 单帧推理
+    </button>
+    <button 
+      class="btn btn-danger"
+      bindtap="onRunAllTests"
+      disabled="{{running}}"
+    >
+      运行全部测试
+    </button>
+    <button 
+      class="btn btn-secondary"
+      bindtap="onClearCache"
+      disabled="{{running}}"
+    >
+      清除缓存
+    </button>
+  </view>
+
+  <!-- Current Test -->
+  <view wx:if="{{currentTest}}" class="current-test">
+    <text class="test-label">当前测试: {{currentTest}}</text>
+    <view wx:if="{{running}}" class="loading-spinner"></view>
+  </view>
+
+  <!-- Test Results -->
+  <view class="results">
+    <text class="results-title">测试结果</text>
+    <scroll-view class="results-list" scroll-y>
+      <view 
+        wx:for="{{testResults}}" 
+        wx:key="index"
+        class="result-item {{item.type}}"
+      >
+        <text class="result-time">{{item.time}}</text>
+        <text class="result-message">{{item.message}}</text>
+      </view>
+      <view wx:if="{{testResults.length === 0}}" class="empty">
+        <text>点击上方按钮开始测试</text>
+      </view>
+    </scroll-view>
+  </view>
+</view>

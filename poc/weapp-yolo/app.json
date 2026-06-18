@@ -1,0 +1,32 @@
+{
+  "pages": [
+    "pages/test/test",
+    "pages/loading/loading",
+    "pages/camera/camera",
+    "pages/result/result"
+  ],
+  "subPackages": [
+    {
+      "root": "inference",
+      "pages": [
+        "pages/inference"
+      ],
+      "independent": true
+    }
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "YOLO POC",
+    "navigationBarTextStyle": "black"
+  },
+  "permission": {
+    "scope.camera": {
+      "desc": "需要使用摄像头进行物体检测"
+    }
+  },
+  "requiredBackgroundModes": ["camera"],
+  "lazyCodeLoading": "requiredComponents",
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

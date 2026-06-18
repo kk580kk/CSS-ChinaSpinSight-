@@ -1,0 +1,173 @@
+/* pages/test/test.wxss */
+.container {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 30rpx;
+  background-color: #fff;
+  border-bottom: 1rpx solid #e5e5e5;
+}
+
+.back-btn {
+  width: 80rpx;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-text {
+  font-size: 48rpx;
+  color: #333;
+  font-weight: bold;
+}
+
+.title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.placeholder {
+  width: 80rpx;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+  padding: 30rpx;
+}
+
+.btn {
+  flex: 1;
+  min-width: 280rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  border-radius: 44rpx;
+  border: none;
+}
+
+.btn::after {
+  border: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #07c160, #10b981);
+  color: #fff;
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #ff4757, #ff6b6b);
+  color: #fff;
+}
+
+.btn-secondary {
+  background: #f0f0f0;
+  color: #333;
+}
+
+.btn[disabled] {
+  opacity: 0.5;
+}
+
+.current-test {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30rpx;
+  background-color: #fff;
+  margin: 0 30rpx;
+  border-radius: 16rpx;
+}
+
+.test-label {
+  font-size: 30rpx;
+  color: #333;
+  margin-right: 20rpx;
+}
+
+.loading-spinner {
+  width: 40rpx;
+  height: 40rpx;
+  border: 4rpx solid #f0f0f0;
+  border-top-color: #07c160;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.results {
+  flex: 1;
+  margin: 30rpx;
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+}
+
+.results-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+
+.results-list {
+  max-height: 600rpx;
+}
+
+.result-item {
+  padding: 20rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+  display: flex;
+  flex-direction: column;
+}
+
+.result-item:last-child {
+  border-bottom: none;
+}
+
+.result-time {
+  font-size: 22rpx;
+  color: #999;
+  margin-bottom: 8rpx;
+}
+
+.result-message {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.result-item.success .result-message {
+  color: #07c160;
+}
+
+.result-item.error .result-message {
+  color: #ff4757;
+}
+
+.result-item.warning .result-message {
+  color: #ff6b35;
+}
+
+.empty {
+  text-align: center;
+  padding: 60rpx 0;
+}
+
+.empty text {
+  font-size: 28rpx;
+  color: #999;
+}
