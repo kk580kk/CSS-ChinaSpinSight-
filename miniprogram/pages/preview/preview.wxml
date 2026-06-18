@@ -1,0 +1,27 @@
+<view class="container">
+  <!-- Video Preview -->
+  <view class="video-container">
+    <video 
+      class="preview-video"
+      src="{{videoPath}}"
+      poster="{{thumbPath}}"
+      controls
+      autoplay
+      loop
+    />
+  </view>
+
+  <!-- Upload Progress -->
+  <view class="upload-progress" wx:if="{{uploading}}">
+    <view class="progress-bar">
+      <view class="progress-fill" style="width: {{uploadProgress}}%"></view>
+    </view>
+    <text class="progress-text">上传中 {{uploadProgress}}%</text>
+  </view>
+
+  <!-- Actions -->
+  <view class="actions" wx:if="{{!uploading}}">
+    <button class="btn-secondary" bindtap="onRetake">重新拍摄</button>
+    <button class="btn-primary" bindtap="onConfirm">确认上传</button>
+  </view>
+</view>

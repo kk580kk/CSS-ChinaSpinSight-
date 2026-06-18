@@ -1,0 +1,54 @@
+<!--pages/result/result.wxml-->
+<view class="container">
+  <!-- Processing State -->
+  <view wx:if="{{loading}}" class="processing">
+    <view class="processing-icon">
+      <view class="ball"></view>
+    </view>
+    <text class="processing-text">正在分析...</text>
+    <text class="processing-hint">AI 正在识别乒乓球旋转</text>
+  </view>
+
+  <!-- Completed State -->
+  <view wx:elif="{{status === 'completed'}}" class="result">
+    <view class="result-header">
+      <text class="title">检测结果</text>
+    </view>
+    
+    <view class="result-main">
+      <view class="spin-circle">
+        <text class="spin-number">{{spinRounds}}</text>
+        <text class="spin-unit">圈</text>
+      </view>
+      
+      <view class="spin-level">
+        <text class="emoji">{{spinEmoji}}</text>
+        <text class="level-text">{{spinLevel}}发球</text>
+      </view>
+    </view>
+
+    <view class="result-details">
+      <view class="detail-item">
+        <text class="detail-label">飞行时长</text>
+        <text class="detail-value">{{duration}}s</text>
+      </view>
+      <view class="detail-item">
+        <text class="detail-label">置信度</text>
+        <text class="detail-value">{{confidence}}%</text>
+      </view>
+    </view>
+
+    <view class="result-actions">
+      <button class="btn btn-save" bindtap="onSave">保存</button>
+      <button class="btn btn-retry" bindtap="onRetry">再测一次</button>
+    </view>
+  </view>
+
+  <!-- Failed State -->
+  <view wx:else class="failed">
+    <text class="failed-icon">😢</text>
+    <text class="failed-text">检测失败</text>
+    <text class="failed-hint">请确保使用标记球并正确拍摄</text>
+    <button class="btn btn-retry" bindtap="onRetry">重新拍摄</button>
+  </view>
+</view>

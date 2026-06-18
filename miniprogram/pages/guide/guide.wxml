@@ -1,0 +1,41 @@
+<view class="container">
+  <view class="header">
+    <text class="title">拍摄指南</text>
+  </view>
+
+  <!-- Guide Image Placeholder -->
+  <view class="guide-image">
+    <view class="placeholder">
+      <text class="placeholder-text">[示意图]</text>
+      <text class="placeholder-sub">球台侧视图</text>
+    </view>
+  </view>
+
+  <!-- Steps -->
+  <view class="steps-section">
+    <view 
+      class="step-item" 
+      wx:for="{{steps}}" 
+      wx:key="num"
+    >
+      <view class="step-num">{{item.num}}</view>
+      <text class="step-text">{{item.text}}</text>
+    </view>
+  </view>
+
+  <!-- Tips -->
+  <view class="tips-section">
+    <text class="tips-title">温馨提示</text>
+    <view class="tips-list">
+      <text class="tip-item">• 确保光线充足，避免逆光拍摄</text>
+      <text class="tip-item">• 背景尽量简洁，避免干扰</text>
+      <text class="tip-item">• 使用高帧率模式(120fps以上)效果更佳</text>
+    </view>
+  </view>
+
+  <!-- Action Buttons -->
+  <view class="action-section">
+    <button class="btn-secondary" bindtap="onBack">返回</button>
+    <button class="btn-primary" bindtap="onStartDetect">开始检测</button>
+  </view>
+</view>

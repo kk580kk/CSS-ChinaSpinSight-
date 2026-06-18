@@ -1,0 +1,46 @@
+<view class="container">
+  <!-- Camera Preview -->
+  <camera 
+    class="camera"
+    mode="normal"
+    resolution="high"
+    frame-size="large"
+    device-position="back"
+    flash="off"
+  >
+    <!-- Guide Frame -->
+    <view class="guide-frame">
+      <view class="frame-corner top-left"></view>
+      <view class="frame-corner top-right"></view>
+      <view class="frame-corner bottom-left"></view>
+      <view class="frame-corner bottom-right"></view>
+      <text class="frame-text">请对准球网区域</text>
+    </view>
+  </camera>
+
+  <!-- Controls -->
+  <view class="controls">
+    <view class="record-info" wx:if="{{recording}}">
+      <text class="record-time">{{recordTime}}s / {{maxRecordTime}}s</text>
+    </view>
+    
+    <view class="button-group">
+      <view class="btn-cancel" bindtap="onCancel">
+        <text>取消</text>
+      </view>
+      
+      <view 
+        class="btn-record {{recording ? 'recording' : ''}}"
+        bindtap="{{recording ? 'onStopRecord' : 'onStartRecord'}}"
+      >
+        <view class="record-inner"></view>
+      </view>
+      
+      <view class="btn-placeholder"></view>
+    </view>
+    
+    <text class="hint-text">
+      {{recording ? '点击停止录制' : '点击开始录制'}}
+    </text>
+  </view>
+</view>

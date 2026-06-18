@@ -1,0 +1,54 @@
+<!--pages/history/history.wxml-->
+<view class="container">
+  <view class="header">
+    <text class="title">历史记录</text>
+    <text class="count">共 {{total}} 条</text>
+  </view>
+
+  <view wx:if="{{loading}}" class="loading">
+    <text>加载中...</text>
+  </view>
+
+  <view wx:elif="{{records.length === 0}}" class="empty">
+    <text class="empty-icon">📝</text>
+    <text class="empty-text">暂无检测记录</text>
+    <text class="empty-hint">开始你的第一次检测吧</text>
+    <button class="btn-start" bindtap="goToCamera">开始检测</button>
+  </view>
+
+  <view wx:else class="list">
+    <view 
+      wx:for="{{records}}" 
+      wx:key="id" 
+      class="item"
+      bindtap="onItemTap"
+      data-task_id="{{item.task_id}}"
+    >
+      <view class="item-left">
+        <view class="spin-info">
+          <text class="spin-value">{{item.spin_rounds}}</text>
+          <text class="spin-unit">圈</text>
+        </view>
+        <text class="spin-level {{item.spin_rounds >= 3 ? 'strong' : ''}}">
+          {{item.spin_rounds >= 5 ? '🏆' : (item.spin_rounds >= 3 ? '💪' : (item.spin_rounds >= 1 ? '🎯' : '🌱'))}}
+          {{item.spin_rounds >= 5 ? '极强旋转' : (item.spin_rounds >= 3 ? '强旋转' : (item.spin_rounds >= 1 ? '中等旋转' : '弱旋转'))}}
+        </text>
+      </view>
+      <view class="item-right">
+        <text class="time">{{item.created_at}}</text>
+        <view class="item-actions">
+          <text class="confidence">{{item.confidence * 100}}%</text>
+          <text class="delete-btn" catchtap="onDelete" data-id="{{item.id}}" data-index="{{index}}">删除</text>
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{loadingMore}}" class="loading-more">
+      <text>加载中...</text>
+    </view>
+
+    <view wx:if="{{!hasMore && records.length > 0}}" class="no-more">
+      <text>没有更多了</text>
+    </view>
+  </view>
+</view>

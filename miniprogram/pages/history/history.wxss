@@ -1,0 +1,142 @@
+/* pages/history/history.wxss */
+.container {
+  min-height: 100vh;
+  background: #f5f5f5;
+}
+
+.header {
+  background: #fff;
+  padding: 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.count {
+  font-size: 26rpx;
+  color: #999;
+}
+
+.loading, .loading-more {
+  text-align: center;
+  padding: 40rpx;
+  color: #999;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 200rpx;
+}
+
+.empty-icon {
+  font-size: 100rpx;
+}
+
+.empty-text {
+  font-size: 32rpx;
+  color: #333;
+  margin-top: 30rpx;
+}
+
+.empty-hint {
+  font-size: 26rpx;
+  color: #999;
+  margin-top: 20rpx;
+}
+
+.btn-start {
+  margin-top: 40rpx;
+  background: #667eea;
+  color: #fff;
+  padding: 20rpx 60rpx;
+  border-radius: 44rpx;
+}
+
+.list {
+  padding: 20rpx;
+}
+
+.item {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.item-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.spin-info {
+  display: flex;
+  align-items: baseline;
+}
+
+.spin-value {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.spin-unit {
+  font-size: 28rpx;
+  color: #666;
+  margin-left: 8rpx;
+}
+
+.spin-level {
+  font-size: 24rpx;
+  color: #666;
+  margin-top: 8rpx;
+}
+
+.spin-level.strong {
+  color: #ff6b6b;
+}
+
+.item-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.time {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.item-actions {
+  display: flex;
+  align-items: center;
+  margin-top: 10rpx;
+}
+
+.confidence {
+  font-size: 22rpx;
+  color: #999;
+  margin-right: 20rpx;
+}
+
+.delete-btn {
+  font-size: 22rpx;
+  color: #ff6b6b;
+}
+
+.no-more {
+  text-align: center;
+  padding: 40rpx;
+  color: #999;
+  font-size: 24rpx;
+}
